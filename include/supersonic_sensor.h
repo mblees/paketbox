@@ -10,8 +10,11 @@ extern "C" {
 
 #define MAX_DISTANCE 300
 
-#define us_trig_pin 2
-#define us_echo_pin A1
+#define us_trig_pin 22
+#define us_echo_pin 36
+
+uint8_t read_us();
+void init_us();
 
 #ifdef __cplusplus
 }

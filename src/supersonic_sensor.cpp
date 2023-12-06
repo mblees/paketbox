@@ -1,23 +1,33 @@
 #include "supersonic_sensor.h"
 
-uint8_t read_us(){
-  unsigned long duration = 0;
-  unsigned int distance = 0;
+void init_us()
+{
+    pinMode(us_trig_pin, OUTPUT);
+    pinMode(us_echo_pin, INPUT);
+}
 
-  digitalWrite(us_trig_pin, LOW);
-  delayMicroseconds(2);
+uint8_t read_us()
+{
+    unsigned long duration = 0;
+    unsigned int distance = 0;
 
-  digitalWrite(us_trig_pin, HIGH);
-  delayMicroseconds(10);
+    digitalWrite(us_trig_pin, LOW);
+    delayMicroseconds(2);
 
-  duration = pulseIn(us_echo_pin, HIGH);
-  distance = duration/58;
+    digitalWrite(us_trig_pin, HIGH);
+    delayMicroseconds(10);
 
-  if (distance > MAX_DISTANCE || distance <= 0){
-    Serial.println("Out of sensor range!");
-    return -1;
-  } else {
-    Serial.println(distance);
-    return distance;
-  }
+    duration = pulseIn(us_echo_pin, HIGH);
+    distance = duration / 58;
+
+    if (distance > MAX_DISTANCE || distance <= 0)
+    {
+        Serial.println("Out of sensor range!");
+        return -1;
+    }
+    else
+    {
+        Serial.println(distance);
+        return distance;
+    }
 }

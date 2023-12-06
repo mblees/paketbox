@@ -8,8 +8,10 @@
 extern "C" {
 #endif
 
-#define MAX_DISTANCE 300
+#define reed_data_pin 37
 
+uint8_t read_reed();
+void init_reed();
 
 #ifdef __cplusplus
 }

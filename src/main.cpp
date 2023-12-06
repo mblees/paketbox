@@ -4,7 +4,7 @@
 #include "supersonic_sensor.h"
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(9600);
 
     init_reed();
     init_us();
@@ -13,6 +13,14 @@ void setup() {
 void loop() {
     Serial.print(read_reed());
     Serial.print(",");
-    Serial.println(read_us());
-    delay(300); // min delay 200ms because of ultrasonic sensor
+
+    float us_value = read_us();
+
+    if(us_value == -1){
+        Serial.println("Out of Range");
+    }
+    else{
+        Serial.println(us_value);
+    }
+    delay(50);
 }

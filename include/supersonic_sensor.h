@@ -13,7 +13,7 @@ extern "C" {
 #define us_trig_pin 22
 #define us_echo_pin 36
 
-uint8_t read_us();
+float read_us();
 void init_us();
 
 #ifdef __cplusplus

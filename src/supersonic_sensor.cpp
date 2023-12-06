@@ -6,28 +6,28 @@ void init_us()
     pinMode(us_echo_pin, INPUT);
 }
 
-uint8_t read_us()
+float read_us()
 {
-    unsigned long duration = 0;
-    unsigned int distance = 0;
+    float duration = 0;
+    float distance = 0;
 
     digitalWrite(us_trig_pin, LOW);
     delayMicroseconds(2);
 
     digitalWrite(us_trig_pin, HIGH);
-    delayMicroseconds(10);
+    delayMicroseconds(12);
+
+    digitalWrite(us_trig_pin, LOW);
 
     duration = pulseIn(us_echo_pin, HIGH);
-    distance = duration / 58;
+    distance = (duration * 0.0343) / 2;
 
     if (distance > MAX_DISTANCE || distance <= 0)
     {
-        Serial.println("Out of sensor range!");
         return -1;
     }
     else
     {
-        Serial.println(distance);
         return distance;
     }
 }

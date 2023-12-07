@@ -3,6 +3,14 @@
 #include "reed_sensor.h"
 #include "supersonic_sensor.h"
 
+#define LoRa_MISO 19
+#define LoRa_CS 18
+#define LoRa_SCK 5
+#define LoRa_IRQ 26
+#define LoRa_MOSI 27
+#define LoRa_RST 14
+
+
 void setup() {
     Serial.begin(9600);
 

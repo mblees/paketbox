@@ -2,6 +2,7 @@
 
 #include "reed_sensor.h"
 #include "supersonic_sensor.h"
+#include "rfid.h"
 
 #define LoRa_MISO 19
 #define LoRa_CS 18
@@ -10,17 +11,17 @@
 #define LoRa_MOSI 27
 #define LoRa_RST 14
 
-
 void setup() {
     Serial.begin(9600);
 
     init_reed();
     init_us();
+    init_rfid();
 }
 
 void loop() {
     Serial.print(read_reed());
-    Serial.print(",");
+    Serial.print(", ");
 
     float us_value = read_us();
 
@@ -30,5 +31,6 @@ void loop() {
     else{
         Serial.println(us_value);
     }
+    read_rfid();
     delay(50);
 }
